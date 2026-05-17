@@ -1,4 +1,4 @@
-# Rent-Ease 🏠
+# Rent-Ease 
 
 A full-stack rental property management application built with Node.js and Express. This project demonstrates production-grade backend architecture with secure data handling, authentication, and geolocation services.
 
@@ -441,13 +441,13 @@ app.use((err, req, res, next) => {
 
 ## Security Features & Best Practices
 
-### ✅ Authentication & Authorization
+###  Authentication & Authorization
 - **Passport.js with Local Strategy:** Secure username/password authentication
 - **Password Hashing:** `passport-local-mongoose` handles bcrypt hashing
 - **Session Management:** MongoDB-backed sessions with encryption
 - **Owner Verification:** Middleware prevents unauthorized resource access
 
-### ✅ Data Protection - Mass Assignment Prevention
+###  Data Protection - Mass Assignment Prevention
 **How We Prevent It:** Using `fillable` properties instead of `unguarded`
 
 **Good Practice (Current Implementation):**
@@ -481,13 +481,13 @@ listing: Joi.object({
 }).required()
 ```
 
-### ✅ Input Validation
+###  Input Validation
 - **Server-Side Joi Validation:** Prevents invalid data before database operations
 - **Schema-Based Approach:** Explicit whitelist of allowed fields
 - **Type Checking:** Joi enforces data types and formats
 - **Range Validation:** `min/max` constraints on numeric fields
 
-### ✅ Resource Ownership
+###  Resource Ownership
 - **User → Listing Relationship:** Owner field automatically assigned from authenticated user
 ```javascript
 newListing.owner = req.user._id; // Line 32, controllers/listings.js
@@ -495,18 +495,18 @@ newListing.owner = req.user._id; // Line 32, controllers/listings.js
 - **Middleware Verification:** `isOwner` and `isReviewAuthor` middleware verify relationships
 - **Query Population:** Related data safely loaded with Mongoose `.populate()`
 
-### ✅ Session Security
+###  Session Security
 - **HttpOnly Cookies:** Prevents XSS access to session tokens
 - **Secure Secrets:** Environment variable-based encryption
 - **MongoDB Storage:** Sessions persistent and encrypted at rest
 - **Expiration:** 7-day automatic session expiration
 
-### ✅ Error Handling
+###  Error Handling
 - **Custom Error Class:** Centralized error responses
 - **No Stack Traces:** Production errors don't expose internals
 - **User-Friendly Messages:** Flash messages guide users
 
-### ✅ Environment Configuration
+###  Environment Configuration
 - **dotenv:** Sensitive data (DB_URL, API_KEYS) in `.env`, never in code
 - **Node Environment Check:**
 ```javascript
@@ -515,7 +515,7 @@ if(process.env.NODE_ENV != 'production') {
 }
 ```
 
-### ✅ Data Relationships & Cascade
+###  Data Relationships & Cascade
 - **Review Cleanup:** MongoDB post-hook automatically deletes reviews when listing deleted
 ```javascript
 listingSchema.post('findOneAndDelete', async (listing) => {
